@@ -80,7 +80,7 @@ you already have an updated mobile development environment it should be fairly s
 Finally, if you're open to making the existing app open source, I would love to spend some time
 contributing to it. If you prefer not to, then I'd like to ask for your permission to continue work
 on this application, publish it to the respective app stores (ideally, iOS, Google Play, and
-F-Droid), and discuss potential for some kind of streamlined feature on the Repeater Book API for =
+F-Droid), and discuss potential for some kind of streamlined feature on the Repeater Book API for
 publishing changes to the Repeater Book. This application will never be monetized in any way, nor
 will I impose or attempt to funnel any donations from it, I simply want for this to exist. 
 
