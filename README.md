@@ -49,7 +49,19 @@ adb devices
 # ...           device
 ```
 
-Build [Flutter]() application
+Build [Flutter](https://flutter.dev/) application:
+
+> Replace `device_id` with the device ID above.
+
+```bash
+flutter build apk -d device_id --release
+```
+
+Install the application:
+
+```bash
+adb install ./build/app/outputs/flutter-apk/app-release.apk
+```
 
 ## For Repeater Book Maintainers
 
