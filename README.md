@@ -6,7 +6,6 @@ A free and open source [Repeater Book](https://repeaterbook.com/) interface with
 <div style="display: flex; gap: 10px;">
   <img src="screenshots/new-york-search.png" width="230" />
   <img src="screenshots/detail-kd2maj.png" width="230" />
-  <img src="screenshots/filter.png" width="230" />
   <img src="screenshots/manhattan-map.png" width="230" />
 </div>
 
