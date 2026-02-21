@@ -34,7 +34,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _loadRepeaters() async {
-    final String response = await rootBundle.loadString('data/us-repeaters.csv');
+    final String response = await rootBundle.loadString(
+      'data/us-repeaters.csv',
+    );
     final parsedRepeaters = await compute(_parseRepeaters, response);
     setState(() {
       _repeaters = parsedRepeaters;
@@ -83,48 +85,53 @@ class _MyAppState extends State<MyApp> {
       ),
       themeMode: ThemeMode.system,
       home: Builder(
-        builder: (context) => Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: Text(_title),
-          ),
-          drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                  ),
-                  child: const Text(
-                    'Open Repeater Book',
-                    style: TextStyle(fontSize: 24),
-                  ),
+        builder:
+            (context) => Scaffold(
+              appBar: AppBar(
+                backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+                title: Text(_title),
+              ),
+              drawer: Drawer(
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: [
+                    DrawerHeader(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      child: const Text(
+                        'Open Repeater Book',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.list),
+                      title: const Text('Repeater List'),
+                      selected: _selectedIndex == 0,
+                      onTap: () => _onDrawerItemTapped(context, 0),
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.map),
+                      title: const Text('Map'),
+                      selected: _selectedIndex == 1,
+                      onTap: () => _onDrawerItemTapped(context, 1),
+                    ),
+                  ],
                 ),
-                ListTile(
-                  leading: const Icon(Icons.list),
-                  title: const Text('Repeater List'),
-                  selected: _selectedIndex == 0,
-                  onTap: () => _onDrawerItemTapped(context, 0),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.map),
-                  title: const Text('Map'),
-                  selected: _selectedIndex == 1,
-                  onTap: () => _onDrawerItemTapped(context, 1),
-                ),
-              ],
+              ),
+              body: SafeArea(child: _buildBody()),
+              floatingActionButton:
+                  _selectedIndex == 0
+                      ? FloatingActionButton(
+                        onPressed:
+                            () =>
+                                RepeaterList.globalKey.currentState
+                                    ?.showFilterSheet(),
+                        tooltip: 'Filter',
+                        child: const Icon(Icons.filter_list),
+                      )
+                      : null,
             ),
-          ),
-          body: SafeArea(child: _buildBody()),
-          floatingActionButton: _selectedIndex == 0
-              ? FloatingActionButton(
-                  onPressed: () => RepeaterList.globalKey.currentState?.showFilterSheet(),
-                  tooltip: 'Filter',
-                  child: const Icon(Icons.filter_list),
-                )
-              : null,
-        ),
       ),
     );
   }

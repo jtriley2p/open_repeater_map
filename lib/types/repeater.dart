@@ -113,7 +113,9 @@ class Repeater {
       precise: _stringToBool(row[12]),
       callsign: row[13].toString(),
       use: _useFromInt(int.parse(row[14].toString())),
-      operationalStatus: _operationalStatusFromInt(int.parse(row[15].toString())),
+      operationalStatus: _operationalStatusFromInt(
+        int.parse(row[15].toString()),
+      ),
       ares: _stringToBool(row[16]),
       races: _stringToBool(row[17]),
       skywarn: _stringToBool(row[18]),
@@ -233,16 +235,10 @@ class Repeater {
         child: Container(
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(20.0)
+            borderRadius: BorderRadius.circular(20.0),
           ),
-          child: 
-        Icon(
-          Icons.cell_tower,
-          color: Color(0xFFFFFFFF),
-          size: 20,
+          child: Icon(Icons.cell_tower, color: Color(0xFFFFFFFF), size: 20),
         ),
-        )
-        
       ),
     );
   }

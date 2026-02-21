@@ -14,62 +14,63 @@ class MapView extends StatelessWidget {
   void _showRepeaterInfo(BuildContext context, Repeater repeater) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => SafeArea(
-        child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              repeater.callsign,
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Downlink: ${repeater.frequency.toStringAsFixed(4)} MHz',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              'Uplink: ${repeater.inputFreq.toStringAsFixed(4)} MHz',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              'PL: ${repeater.pl ?? "None"}',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Text(
-              '${repeater.nearestCity}, ${repeater.state}',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: FilledButton.icon(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => RepeaterDetails(repeater),
+      builder:
+          (context) => SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    repeater.callsign,
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                },
-                icon: const Icon(Icons.info_outline),
-                label: const Text('View Details'),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Downlink: ${repeater.frequency.toStringAsFixed(4)} MHz',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Uplink: ${repeater.inputFreq.toStringAsFixed(4)} MHz',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'PL: ${repeater.pl ?? "None"}',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Text(
+                    '${repeater.nearestCity}, ${repeater.state}',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton.icon(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RepeaterDetails(repeater),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.info_outline),
+                      label: const Text('View Details'),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                ],
               ),
             ),
-            const SizedBox(height: 8),
-          ],
-        ),
-      ),
-      ),
+          ),
     );
   }
 
@@ -77,9 +78,11 @@ class MapView extends StatelessWidget {
     final seen = <String>{};
     return repeaters
         .where((repeater) => seen.add(repeater.callsign))
-        .map((repeater) => repeater.toMarker(
-              onTap: () => _showRepeaterInfo(context, repeater),
-            ))
+        .map(
+          (repeater) => repeater.toMarker(
+            onTap: () => _showRepeaterInfo(context, repeater),
+          ),
+        )
         .toList();
   }
 
