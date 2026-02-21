@@ -116,7 +116,7 @@ class _MyAppState extends State<MyApp> {
               ],
             ),
           ),
-          body: _buildBody(),
+          body: SafeArea(child: _buildBody()),
           floatingActionButton: _selectedIndex == 0
               ? FloatingActionButton(
                   onPressed: () => RepeaterList.globalKey.currentState?.showFilterSheet(),

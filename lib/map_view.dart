@@ -14,7 +14,8 @@ class MapView extends StatelessWidget {
   void _showRepeaterInfo(BuildContext context, Repeater repeater) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => Padding(
+      builder: (context) => SafeArea(
+        child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -67,6 +68,7 @@ class MapView extends StatelessWidget {
             const SizedBox(height: 8),
           ],
         ),
+      ),
       ),
     );
   }
